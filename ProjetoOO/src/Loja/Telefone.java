@@ -5,7 +5,7 @@ public class Telefone {
 	private int numero;
 	
 	public Telefone() {
-		
+		super();
 	}
 	
 	public Telefone(int ddd, int numero) {
@@ -27,5 +27,8 @@ public class Telefone {
 		this.numero = numero;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "(" + ddd + ") "+ numero;
+	}
 }

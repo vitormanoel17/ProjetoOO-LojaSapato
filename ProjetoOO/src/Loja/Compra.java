@@ -1,20 +1,13 @@
 package Loja;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 public class Compra {
 	private Calcado calcado;
-	private GregorianCalendar dataDaCompra;
+	private Date dataDaCompra;
 	
-	public Compra(Calcado p,GregorianCalendar data){
+	public Compra(Calcado p,Date data){
 		this.calcado = p;
 		this.dataDaCompra = data;
-	}
-	
-	public void ganharDesconto() {
-		
-	}
-	public void listarCompras() {
-		
 	}
 
 	public Calcado getCalcado() {
@@ -25,12 +18,18 @@ public class Compra {
 		this.calcado = calcado;
 	}
 
-	public GregorianCalendar getDataDaCompra() {
+	public Date getDataDaCompra() {
 		return dataDaCompra;
 	}
 
-	public void setDataDaCompra(GregorianCalendar dataDaCompra) {
+	public void setDataDaCompra(Date dataDaCompra) {
 		this.dataDaCompra = dataDaCompra;
+	}
+	
+	@Override
+	public String toString() {
+		return "Categoria: "+ this.calcado.getCategoria() + "| Preço: " + this.calcado.getPreco() +
+				"| Data: "+ this.dataDaCompra;
 	}
 	
 }

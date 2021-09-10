@@ -1,16 +1,26 @@
 package Loja;
+import java.util.*;
 public class Cliente extends Pessoa {
 	private Compra[] compra = new Compra[50];
 	private int quantCompras;
 
 	public Cliente(Endereco endereco, Telefone telefone, String nome) {
 		super(endereco, telefone, nome);
+		this.quantCompras = 0;
 	}
-
-	public void ganharDesconto() {
-		int arrayLength = compra.length;
-		if (arrayLength > 5) {		
-			
+	
+	//cliente ganha 10% de desconto
+	public float ganharDesconto(float preco) {
+		if (this.quantCompras >= 2) {		
+			preco = preco*0.9f;
+		}
+		return preco;
+	}
+	
+	//lista as compras associadas ao cliente
+	public void listarCompras() {
+		for(int i = 0; i< quantCompras; i++) {
+			System.out.println(this.compra[i].toString());
 		}
 	}
 
@@ -19,8 +29,8 @@ public class Cliente extends Pessoa {
 	}
 
 
-	public void setCompra(Compra[] compra) {
-		this.compra = compra;
+	public void setCompra(Calcado calcado,Date data) {
+		this.compra[quantCompras] = new Compra(calcado,data);
 	}
 
 

@@ -4,11 +4,11 @@ public class Endereco {
 	private String cidade;
 	private String estado;
 	private String cep;
-	private String numero;
+	private int numero;
 	private String bairro;
 	private String logradouro;
 	
-	public Endereco(String cidade, String estado, String cep, String numero, String bairro, String logradouro) {
+	public Endereco(String cidade, String estado, String cep, int numero, String bairro, String logradouro) {
 		super();
 		this.cidade = cidade;
 		this.estado = estado;
@@ -35,10 +35,10 @@ public class Endereco {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
-	public void setNumero(String numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 	public String getBairro() {

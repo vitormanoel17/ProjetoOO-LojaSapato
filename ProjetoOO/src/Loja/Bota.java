@@ -7,11 +7,9 @@ public class Bota extends Calcado {
 	private String materialDoForro;
 	private int alturaDoCano;
 	
-	public Bota(String categoria, String cor, int tamanho, int peso, String marca, 
-				String material, float preco,String descricao, float custo, 
-				Fornecedor fornecedor) {
-		super(categoria, cor, tamanho, peso, marca, material, preco, descricao, custo, 
-				fornecedor);
+	public Bota(String categoria, String cor, int tamanho, String marca, 
+				String material, float preco,String descricao, float custo) {
+		super(categoria, cor, tamanho, marca, material, preco, descricao, custo);
 		
 	}
 

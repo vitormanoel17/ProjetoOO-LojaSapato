@@ -7,6 +7,7 @@ public class Venda {
 	private Cliente cliente;
 	private Funcionario funcionario;
 	private Date dataDaVenda;
+	private float ValorTot;
 	
 	public Venda(Estoque estoque, Calcado calcado, Cliente cliente, 
 			Funcionario funcionario, Date dataDaVenda) {
@@ -18,13 +19,14 @@ public class Venda {
 		this.dataDaVenda = dataDaVenda;
 	}
 	
+	// método para finalizar a venda
 	public void realizarVenda(){
-		int qtd = 0;
-		funcionario.setNumeroDeVendas(++qtd);
-		
-		
+		this.ValorTot = this.getCliente().ganharDesconto(this.getCalcado().getPreco());
+		this.funcionario.setQuantDeVendas(funcionario.getQuantDeVendas()+1);
+		this.cliente.setCompra(calcado,dataDaVenda);
+		this.cliente.setQuantCompras(cliente.getQuantCompras()+1);
 	}
-	
+
 	public Estoque getEstoque() {
 		return estoque;
 	}
@@ -65,9 +67,17 @@ public class Venda {
 		this.dataDaVenda = dataDaVenda;
 	}
 	
+	public float getValorTot() {
+		return ValorTot;
+	}
+
+	public void setValorTot(float valorTot) {
+		ValorTot = valorTot;
+	}
+	
 	@Override
 	public String toString() {
-		return "Calcado: " + calcado.getCategoria() + "| Valor : " +calcado.getPreco() + "| Cliente: " + 
+		return "Categoria: " + calcado.getCategoria() + "| Valor : " +calcado.getPreco() + "| Cliente: " + 
 				cliente.getNome() + "| Funcionario: "+ funcionario.getNome() + "| Data Da Venda : " + dataDaVenda ;
 	}
 }
