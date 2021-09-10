@@ -9,15 +9,10 @@ public class Bota extends Calcado {
 	
 	public Bota(String categoria, String cor, int tamanho, int peso, String marca, 
 				String material, float preco,String descricao, float custo, 
-				Fornecedor fornecedor, String lingueta, String palmilha, String fechamento,
-				String materialDoForro, int alturaDoCano) {
+				Fornecedor fornecedor) {
 		super(categoria, cor, tamanho, peso, marca, material, preco, descricao, custo, 
-			fornecedor);
-		this.lingueta = lingueta;
-		this.palmilha = palmilha;
-		this.fechamento = fechamento;
-		this.materialDoForro = materialDoForro;
-		this.alturaDoCano = alturaDoCano;
+				fornecedor);
+		
 	}
 
 	public String getLingueta() {

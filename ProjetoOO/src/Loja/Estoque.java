@@ -1,11 +1,15 @@
 package Loja;
 import java.util.ArrayList;
+
 public class Estoque {
 	private ArrayList<Calcado> ListaProdutos = new ArrayList<>();
 	
-	public Estoque(ArrayList<Calcado> listaProdutos) {
+	public Estoque(){
 		super();
-		ListaProdutos = listaProdutos;
+	}
+	public Estoque(Calcado listaProdutos) {
+		super();
+		ListaProdutos.add(listaProdutos);
 	}
 	public void avisoEstoqueBaixo() {
 		

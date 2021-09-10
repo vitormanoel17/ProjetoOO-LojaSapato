@@ -1,14 +1,19 @@
 package Loja;
 
 public class Telefone {
-	int ddd;
-	int numero;
+	private int ddd;
+	private int numero;
+	
+	public Telefone() {
+		
+	}
 	
 	public Telefone(int ddd, int numero) {
 		super();
 		this.ddd = ddd;
 		this.numero = numero;
 	}
+	
 	public int getDdd() {
 		return ddd;
 	}

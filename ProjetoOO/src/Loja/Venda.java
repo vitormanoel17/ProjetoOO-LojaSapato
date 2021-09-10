@@ -17,36 +17,57 @@ public class Venda {
 		this.funcionario = funcionario;
 		this.dataDaVenda = dataDaVenda;
 	}
+	
+	public void realizarVenda(){
+		int qtd = 0;
+		funcionario.setNumeroDeVendas(++qtd);
+		
+		
+	}
+	
 	public Estoque getEstoque() {
 		return estoque;
 	}
+	
 	public void setEstoque(Estoque estoque) {
 		this.estoque = estoque;
 	}
+	
 	public Calcado getCalcado() {
 		return calcado;
 	}
+	
 	public void setCalcado(Calcado calcado) {
 		this.calcado = calcado;
 	}
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
+	
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
+	
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
+	
 	public Date getDataDaVenda() {
 		return dataDaVenda;
 	}
+	
 	public void setDataDaVenda(Date dataDaVenda) {
 		this.dataDaVenda = dataDaVenda;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Calcado: " + calcado.getCategoria() + "| Valor : " +calcado.getPreco() + "| Cliente: " + 
+				cliente.getNome() + "| Funcionario: "+ funcionario.getNome() + "| Data Da Venda : " + dataDaVenda ;
+	}
 }

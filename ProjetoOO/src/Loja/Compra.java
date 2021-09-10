@@ -1,16 +1,12 @@
 package Loja;
 import java.util.GregorianCalendar;
 
-
-
 public class Compra {
 	private Calcado calcado;
-	private int quantCompras;
 	private GregorianCalendar dataDaCompra;
 	
-	public Compra(Calcado p, int quant,GregorianCalendar data){
+	public Compra(Calcado p,GregorianCalendar data){
 		this.calcado = p;
-		this.quantCompras = quant;
 		this.dataDaCompra = data;
 	}
 	
@@ -27,14 +23,6 @@ public class Compra {
 
 	public void setCalcado(Calcado calcado) {
 		this.calcado = calcado;
-	}
-
-	public int getQuantCompras() {
-		return quantCompras;
-	}
-
-	public void setQuantCompras(int quantCompras) {
-		this.quantCompras = quantCompras;
 	}
 
 	public GregorianCalendar getDataDaCompra() {
