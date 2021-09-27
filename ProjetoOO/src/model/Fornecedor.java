@@ -1,14 +1,21 @@
-package Loja;
-
-abstract public class Pessoa {
+package model;
+public class Fornecedor {
+	private String nome;
 	private Endereco endereco;
 	private Telefone telefone;
-	private String nome;
 	
-	public Pessoa(Endereco endereco, Telefone telefone, String nome) {
+	public Fornecedor(String nome, Endereco endereco, Telefone telefone) {
 		super();
+		this.nome = nome;
 		this.endereco = endereco;
 		this.telefone = telefone;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	
@@ -26,14 +33,6 @@ abstract public class Pessoa {
 	
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 	
 	

@@ -1,4 +1,4 @@
-package Loja;
+package model;
 import java.util.Date;
 
 public class Venda {
@@ -19,7 +19,7 @@ public class Venda {
 		this.dataDaVenda = dataDaVenda;
 	}
 	
-	// método para finalizar a venda
+	// mï¿½todo para finalizar a venda
 	public void realizarVenda(){
 		this.ValorTot = this.getCliente().ganharDesconto(this.getCalcado().getPreco());
 		this.funcionario.setQuantDeVendas(funcionario.getQuantDeVendas()+1);

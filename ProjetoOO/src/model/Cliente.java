@@ -1,4 +1,4 @@
-package Loja;
+package model;
 import java.util.*;
 public class Cliente extends Pessoa {
 	private Compra[] compra = new Compra[50];

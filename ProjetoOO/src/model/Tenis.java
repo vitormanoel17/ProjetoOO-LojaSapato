@@ -1,4 +1,4 @@
-package Loja;
+package model;
 
 public class Tenis extends Calcado{
 	private String materialDoForro;

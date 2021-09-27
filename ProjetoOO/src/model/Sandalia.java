@@ -1,4 +1,4 @@
-package Loja;
+package model;
 
 public class Sandalia extends Calcado{
 	private int alturaDoSalto;

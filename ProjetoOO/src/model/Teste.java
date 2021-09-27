@@ -1,8 +1,8 @@
-package Loja;
+package model;
 import java.util.*;
 
 public class Teste {
-
+/*
 	public static void main(String[] args) {
 		
 		// testando instancia de objetos
@@ -17,7 +17,7 @@ public class Teste {
 		Venda v1 = new Venda(estoque,b,c1,f,data);
 		Financeiro fi = new Financeiro(v1,estoque);
 		
-		// Utilizando os dados pré-cadastrados e testando métodos
+		// Utilizando os dados prï¿½-cadastrados e testando mï¿½todos
 		Dados dados = new Dados();
 		dados.fileWithSomeData();	
 		
@@ -31,7 +31,8 @@ public class Teste {
 		System.out.println(dados.getFinanceiro().contasAreceber()+"\n");
 		System.out.println(dados.getFinanceiro().calculoSaldo()+"\n");
 		
-	}
 
+	}
+*/
 }
 

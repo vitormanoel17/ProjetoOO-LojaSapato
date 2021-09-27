@@ -1,4 +1,4 @@
-package Loja;
+package model;
 
 public class Chuteira extends Calcado{
 	

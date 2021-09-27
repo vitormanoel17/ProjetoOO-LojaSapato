@@ -1,4 +1,4 @@
-package Loja;
+package model;
 
 public abstract class Calcado {
 	private String categoria;

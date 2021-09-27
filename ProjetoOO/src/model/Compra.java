@@ -1,4 +1,4 @@
-package Loja;
+package model;
 import java.util.*;
 
 public class Compra {
@@ -28,7 +28,7 @@ public class Compra {
 	
 	@Override
 	public String toString() {
-		return "Categoria: "+ this.calcado.getCategoria() + "| Preço: " + this.calcado.getPreco() +
+		return "Categoria: "+ this.calcado.getCategoria() + "| Preï¿½o: " + this.calcado.getPreco() +
 				"| Data: "+ this.dataDaCompra;
 	}
 	

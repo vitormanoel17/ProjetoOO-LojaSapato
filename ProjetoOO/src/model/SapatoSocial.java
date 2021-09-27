@@ -1,4 +1,4 @@
-package Loja;
+package model;
 
 public class SapatoSocial extends Calcado{
 	private String materialDoForro;
