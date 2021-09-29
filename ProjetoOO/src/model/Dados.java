@@ -37,6 +37,14 @@ public class Dados {
 			
 			financeiro.setVenda(vendas[i]);
 		}
+		vendas[11] = new Venda(estoque,bota[1],cliente[2],funcionario[1],d);
+		vendas[11].realizarVenda();
+		vendas[12] = new Venda(estoque,bota[2],cliente[2],funcionario[1],d);
+		vendas[12].realizarVenda();
+		vendas[13] = new Venda(estoque,bota[3],cliente[2],funcionario[1],d);
+		vendas[13].realizarVenda();
+		vendas[14] = new Venda(estoque,bota[4],cliente[2],funcionario[1],d);
+		vendas[14].realizarVenda();
 	}
 
 	public Estoque getEstoque() {
@@ -57,6 +65,10 @@ public class Dados {
 
 	public Venda[] getVendas() {
 		return vendas;
+	}
+
+	public Cliente[] getCliente() {
+		return cliente;
 	}
 
 	public Cliente getCliente(int i) {
