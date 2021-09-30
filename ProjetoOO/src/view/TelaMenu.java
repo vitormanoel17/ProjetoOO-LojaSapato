@@ -14,7 +14,7 @@ public class TelaMenu implements ActionListener{
     private JButton botao4 = new JButton("Financeiro");
 
     public TelaMenu(){
-        janela.setSize(500,700);
+        janela.setSize(500,500);
         janela.setVisible(true);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -45,7 +45,7 @@ public class TelaMenu implements ActionListener{
         }
 
         if(search == botao2){
-
+            new TelaEstoque();
         }
         
         if(search == botao3){
