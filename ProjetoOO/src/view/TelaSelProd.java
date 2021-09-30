@@ -28,6 +28,8 @@ public class TelaSelProd implements ListSelectionListener{
     }
 
     public void valueChanged(ListSelectionEvent e){
-        new TelaDetalheProduto(1);
+        if(e.getValueIsAdjusting()){
+            new TelaDetalheProduto(1).telaCadastro(listaCategoria.getSelectedIndex());
+        }
     }
 }

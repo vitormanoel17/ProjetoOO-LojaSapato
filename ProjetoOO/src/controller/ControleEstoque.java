@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
 import model.Calcado;
 import model.Estoque;
 
@@ -22,6 +20,10 @@ public class ControleEstoque {
 
     public void setCalcado(Calcado c){
         estoque.setCalcado(c);
+    }
+
+    public void excluirProd(int i){
+        estoque.getCalcado().remove(i);
     }
     
 }

@@ -7,6 +7,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
@@ -20,9 +21,12 @@ public class TelaEstoque implements ListSelectionListener,ActionListener{
     JButton remProd = new JButton("Remover Produto"); 
     JLabel txtProd = new JLabel("Produtos: ");
     JTable tabela;
+    JScrollPane tabScroll;
+    ControleEstoque e;
 
+    public TelaEstoque(ControleDados d){
 
-    public TelaEstoque(){
+        e = new ControleEstoque(d);
         janela.setSize(700,500);
         txtProd.setBounds(30,30,100,30);
         adProd.setBounds(90,400,200,30);
@@ -33,7 +37,7 @@ public class TelaEstoque implements ListSelectionListener,ActionListener{
         janela.add(txtProd);
         janela.add(adProd);
         janela.add(remProd);
-        janela.add(tabela);
+        janela.add(tabScroll);
 
         adProd.addActionListener(this);
         remProd.addActionListener(this);
@@ -45,8 +49,6 @@ public class TelaEstoque implements ListSelectionListener,ActionListener{
     
     public void criarTabela(){
 
-        ControleDados c = new ControleDados();
-        ControleEstoque e =  new ControleEstoque(c);
         Object[][] lista = new Object[50][4];
         Object[] colName = {"Categoria","cor","Tamanho","Marca"};
 
@@ -65,7 +67,8 @@ public class TelaEstoque implements ListSelectionListener,ActionListener{
         }
         
         tabela = new JTable(lista,colName);
-        tabela.setBounds(120,90,400,300);
+        tabScroll = new JScrollPane(tabela);
+        tabScroll.setBounds(120,90,400,300);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tabela.getSelectionModel().addListSelectionListener(this);
    
@@ -73,13 +76,20 @@ public class TelaEstoque implements ListSelectionListener,ActionListener{
     }
 
     public void valueChanged(ListSelectionEvent e){
-        new TelaDetalheProduto(tabela.getSelectedRow());        
+        if(e.getValueIsAdjusting()){
+            new TelaDetalheProduto(tabela.getSelectedRow()).telaDetalhe();        
+        }
     }
-
+    
     public void actionPerformed(ActionEvent e){
         Object search = e.getSource();
+
         if(search == adProd){
             new TelaSelProd();
+        }
+        if(search == remProd){
+            this.e.excluirProd(tabela.getSelectedRow());
+            tabela.updateUI();
         }
     }
 
