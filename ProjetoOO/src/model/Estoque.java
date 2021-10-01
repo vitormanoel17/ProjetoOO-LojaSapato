@@ -13,11 +13,15 @@ public class Estoque {
 		calcado.add(c);
 	}
 	
-	public void listarProdutos() {
+	public String[] listarProdutos() {
+		String[] detalhe = new String[calcado.size()];
+		int i = 0;
 		for(Calcado c : calcado) {
-			System.out.println("Categoria: "+ c.getCategoria() +"| Cor: "+ c.getCor() + 
-							"| Tamanho: " + c.getTamanho() +"| Marca: "+ c.getMarca());
+			detalhe[i] = "Categoria: "+ c.getCategoria() +"| Cor: "+ c.getCor() + 
+							"| Tamanho: " + c.getTamanho() +"| Marca: "+ c.getMarca();
+			i++;
 		}
+		return detalhe;
 	}
 	
 	

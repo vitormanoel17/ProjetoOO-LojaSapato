@@ -17,4 +17,12 @@ public class ControleDados {
     public Cliente[] getClientes(){
         return dados.getCliente();
     }
+
+    public Funcionario[] getFuncionarios(){
+        return dados.getFuncionario();
+    }
+
+    public void removerCliente(int i){
+        dados.getCliente()[i].getClass();
+    }
 }

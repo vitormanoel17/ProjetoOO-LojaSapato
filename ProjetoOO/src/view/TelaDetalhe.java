@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import controller.ControleCliente;
@@ -17,16 +18,37 @@ public class TelaDetalhe {
     private JTextField txtNome;
     private JTextField txtEnd;
     private JTextField txtTel;
-    private JTable tabela;
+    private JScrollPane tabScroll;
     private int pos;
+    private int sel;
+    private ControleDados d;
 
-    public TelaDetalhe(int pos, ControleDados dados){
+    public void mostrarDetalhes(int pos, ControleDados dados,int sel){
         this.pos = pos;
+        this.sel = sel;
+        this.d = dados;
+
         tela.setSize(700,500);
         
-        txtNome = new JTextField(dados.getClientes()[pos].getNome(),200);
-        txtEnd = new JTextField(dados.getClientes()[pos].getEndereco().toString(),200);
-        txtTel = new JTextField(dados.getClientes()[pos].getTelefone().toString(),200);
+        if(sel == 1){
+            txtNome = new JTextField(d.getClientes()[pos].getNome(),200);
+            txtEnd = new JTextField(d.getClientes()[pos].getEndereco().toString(),200);
+            txtTel = new JTextField(d.getClientes()[pos].getTelefone().toString(),200);
+
+            criarTabela();
+            tela.add(tabScroll);
+            tela.add(compra);
+        
+        }else if(sel == 2){
+            txtNome = new JTextField(d.getFuncionarios()[pos].getNome(),200);
+            txtEnd = new JTextField(d.getFuncionarios()[pos].getEndereco().toString(),200);
+            txtTel = new JTextField(d.getFuncionarios()[pos].getTelefone().toString(),200);
+        
+        }else{
+            txtNome = new JTextField(200);
+            txtEnd = new JTextField(200);
+            txtTel = new JTextField(200);
+        }
 
         nome.setBounds(30,30,100,30);
         endereco.setBounds(30,60,100,30);
@@ -36,17 +58,14 @@ public class TelaDetalhe {
         txtEnd.setBounds(150,60,200,30);
         txtTel.setBounds(150,90,200,30);
 
-        
-        criarTabela();
-
         tela.add(nome);
-        tela.add(telefone);
+        tela.add(telefone); 
         tela.add(endereco);
-        tela.add(compra);
+    
         tela.add(txtNome);
         tela.add(txtEnd);
         tela.add(txtTel);
-        tela.add(tabela);
+        
 
         tela.setLayout(null);
         tela.setVisible(true);
@@ -56,6 +75,7 @@ public class TelaDetalhe {
     
     public void criarTabela(){
 
+        JTable tabela;
         ControleDados c = new ControleDados();
         ControleCliente cc = new ControleCliente(c);
         Object[][] lista = new Object[50][3];
@@ -74,7 +94,9 @@ public class TelaDetalhe {
         }
         
         tabela = new JTable(lista,colName);
-        tabela.setBounds(30,150,400,300);
+        tabScroll = new JScrollPane(tabela);
+        tabScroll.setBounds(30,150,400,300);
         
     }
+    
 }
