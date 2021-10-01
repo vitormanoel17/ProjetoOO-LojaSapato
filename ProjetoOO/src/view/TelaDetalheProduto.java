@@ -9,31 +9,61 @@ import controller.ControleEstoque;
 import model.*;
 
 public class TelaDetalheProduto {
-    ControleDados d = new ControleDados();
-    ControleEstoque e = new ControleEstoque(d);
+    private ControleDados d = new ControleDados();
+    private ControleEstoque e = new ControleEstoque(d);
 
-    JFrame janela = new JFrame("Detalhe Produto");
-    JLabel categoria = new JLabel("Categoria:");
-    JTextField txtCateg;
-    JLabel cor = new JLabel("Cor:");
-    JTextField txtCor;
-    JLabel tamanho = new JLabel("Tamanho:");
-    JTextField txtTamanho;
-    JLabel peso = new JLabel("Peso:");
-    JTextField txtPeso ;
-    JLabel marca = new JLabel("Marca:");
-    JTextField txtMarca;
-    JLabel material = new JLabel("Material: ");
-    JTextField txtMaterial;
-    JLabel preco = new JLabel("Preco: ");
-    JTextField txtPreco;
-    JLabel descricao = new JLabel("Descrição: ");
-    JTextField txtDescricao;
-    JLabel custo = new JLabel("Custo: ");
-    JTextField txtCusto;
-    JLabel fornecedor = new JLabel("Fornecedor: ");
-    JTextField txtFornecedor;
-    int pos;
+    private JFrame janela = new JFrame("Detalhe Produto");
+    private JLabel categoria = new JLabel("Categoria:");
+    private JTextField txtCateg;
+    private JLabel cor = new JLabel("Cor:");
+    private JTextField txtCor;
+    private JLabel tamanho = new JLabel("Tamanho:");
+    private JTextField txtTamanho;
+    private JLabel peso = new JLabel("Peso:");
+    private JTextField txtPeso ;
+    private JLabel marca = new JLabel("Marca:");
+    private JTextField txtMarca;
+    private JLabel material = new JLabel("Material: ");
+    private JTextField txtMaterial;
+    private JLabel preco = new JLabel("Preco: ");
+    private JTextField txtPreco;
+    private JLabel descricao = new JLabel("Descrição: ");
+    private JTextField txtDescricao;
+    private JLabel custo = new JLabel("Custo: ");
+    private JTextField txtCusto;
+    private JLabel fornecedor = new JLabel("Fornecedor: ");
+    private JTextField txtFornecedor;
+    private JLabel palmilha = new JLabel("palmilha: ");
+    private JTextField txtPalm;
+    private JLabel fechamento = new JLabel("Fechamento: ");
+    private JTextField txtFecha;
+    private JLabel materialForro = new JLabel("Material Forro: "); 
+    private JTextField txtMatForro;
+    private JLabel altCano = new JLabel("Altura do Cano: "); 
+    private JTextField txtAltCano; 
+    private JLabel alturaDoSalto = new JLabel("Altura do Salto: ");
+    private JTextField txtAltSalto;
+    private JLabel materialTira = new JLabel("Material da Tira: ");
+    private JTextField txtMatTira;
+    private JLabel solado = new JLabel("Solado: ");
+    private JTextField txtSolado;
+    private JLabel superficie = new JLabel("Superficie: ");
+    private JTextField txtSup;
+    private JLabel tecnologia = new JLabel("Tecnologia: ");
+    private JTextField txtTecno;
+    private JLabel linha = new JLabel("Linha: ");
+    private JTextField txtLinha;
+    private JLabel tipoDeSalto = new JLabel("Tipo de Salto: ");
+    private JTextField txtTipoSalto;
+    private JLabel pisada = new JLabel("Pisada: ");
+    private JTextField txtPisada = new JTextField(200);
+    private JLabel indicacao = new JLabel("indicação: ");
+    private JTextField txtIndicacao = new JTextField(200);
+    private JLabel tipoDeBico = new JLabel("Tipo de Bico: ");
+    private JTextField txtTipoBico = new JTextField(200);
+    private JLabel lingueta = new JLabel("Lingueta: ");
+    private JTextField txtLing = new JTextField(200);
+    private int pos;
     
     public TelaDetalheProduto(int pos){
         this.pos = pos;
@@ -64,16 +94,12 @@ public class TelaDetalheProduto {
 
             getDadosComuns();
 
-            JLabel lingueta = new JLabel("Lingueta: ");
-            JTextField txtLing = new JTextField(200);
-            JLabel palmilha = new JLabel("Palmilha: ");
-            JTextField txtPalm = new JTextField(200);
-            JLabel fechamento = new JLabel("Fechamento: ");
-            JTextField txtFecha = new JTextField(200);
-            JLabel materialForro = new JLabel("Material Forro: ");
-            JTextField txtMatForro = new JTextField(200);
-            JLabel altCano = new JLabel("Altura do Cano: ");
-            JTextField txtAltCano = new JTextField(200);
+            txtLing = new JTextField(200);
+            
+            txtPalm = new JTextField(200);
+            txtFecha = new JTextField(200);
+            txtMatForro = new JTextField(200);
+            txtAltCano = new JTextField(200);
 
             lingueta.setBounds(30,330,100,30);
             txtLing.setBounds(100,330,100,30);
@@ -102,10 +128,8 @@ public class TelaDetalheProduto {
 
             getDadosComuns();
 
-            JLabel materialTira = new JLabel("Material da Tira: ");
-            JTextField txtMatTira = new JTextField(200);
-            JLabel solado = new JLabel("Solado: ");
-            JTextField txtSolado = new JTextField(200);
+            txtMatTira = new JTextField(200);
+            txtSolado = new JTextField(200);
 
             materialTira.setBounds(30,330,100,30);
             txtMatTira.setBounds(100,330,100,30);
@@ -122,16 +146,11 @@ public class TelaDetalheProduto {
 
             getDadosComuns();
 
-            JLabel superficie = new JLabel("Superficie: ");
-            JTextField txtSup = new JTextField(200);
-            JLabel tecnologia = new JLabel("Tecnologia: ");
-            JTextField txtTecno = new JTextField(200);
-            JLabel linha = new JLabel("Linha: ");
-            JTextField txtLinha = new JTextField(200);
-            JLabel materialForro = new JLabel("Material do Forro: ");
-            JTextField txtMatForro = new JTextField(200);
-            JLabel fechamento = new JLabel("Fechamento: ");
-            JTextField txtFecha = new JTextField(200);
+            txtSup = new JTextField(200);
+            txtTecno = new JTextField(200);
+            txtLinha = new JTextField(200);
+            txtMatForro = new JTextField(200);
+            txtFecha = new JTextField(200);
 
             superficie.setBounds(30,330,100,30);
             txtSup.setBounds(100,330,100,30);
@@ -158,13 +177,10 @@ public class TelaDetalheProduto {
         }else if(e.getCalcado(pos) instanceof Sandalia){
 
             getDadosComuns();
-            
-            JLabel alturaDoSalto = new JLabel("Altura do Salto: ");
-            JTextField txtAltSalto = new JTextField(200);
-            JLabel tipoDeSalto = new JLabel("Tipo de Salto");
-            JTextField txtTipoSalto = new JTextField(200);
-            JLabel fechamento = new JLabel("Fechamento ");
-            JTextField txtFecha = new JTextField(200);
+
+            txtAltSalto = new JTextField(200);
+            txtTipoSalto = new JTextField(200);
+            txtFecha = new JTextField(200);
 
             alturaDoSalto.setBounds(30,330,100,30);
             txtAltSalto.setBounds(100,330,100,30);
@@ -186,16 +202,12 @@ public class TelaDetalheProduto {
             
             getDadosComuns();
 
-            JLabel materialDoForro = new JLabel("Material do Forro: ");
-            JTextField txtMatForro = new JTextField(200);
-            JLabel tipoDeBico = new JLabel("Tipo de Bico: ");
-            JTextField txtTipoBico = new JTextField(200);
-            JLabel alturaDoSalto = new JLabel("Altura do Salto: ");
-            JTextField txtAltSalto = new JTextField(200);
-            JLabel palmilha = new JLabel("Palmilha: ");
-            JTextField txtPalm = new JTextField(200);
+            txtMatForro = new JTextField(200);
+            txtTipoBico = new JTextField(200);
+            txtAltSalto = new JTextField(200);
+            txtPalm = new JTextField(200);
 
-            materialDoForro.setBounds(30,330,100,30);
+            materialForro.setBounds(30,330,100,30);
             txtMatForro.setBounds(100,330,100,30);
             tipoDeBico.setBounds(30,360,100,30);
             txtTipoBico.setBounds(100,360,100,30);
@@ -204,7 +216,7 @@ public class TelaDetalheProduto {
             palmilha.setBounds(30,420,100,30);
             txtPalm.setBounds(100,420,100,30);
 
-            janela.add(materialDoForro);
+            janela.add(materialForro);
             janela.add(txtMatForro);
             janela.add(tipoDeBico);
             janela.add(txtTipoBico);
@@ -217,20 +229,16 @@ public class TelaDetalheProduto {
 
             getDadosComuns();
 
-            JLabel materialDoForro = new JLabel("Material do Forro: ");
-            JTextField txtMatForro = new JTextField(200);
-            JLabel palmilha = new JLabel("Palmilha: ");
-            JTextField txtPalm = new JTextField(200);
-            JLabel fechamento = new JLabel("Fechamento: ");
-            JTextField txtFecha = new JTextField(200);
-            JLabel pisada = new JLabel("Pisada: ");
-            JTextField txtPisada = new JTextField(200);
-            JLabel altCano = new JLabel("Altura do Cano: ");
-            JTextField txtAltCano = new JTextField(200);
-            JLabel indicacao = new JLabel("indicação: ");
-            JTextField txtIndicacao = new JTextField(200);
+            txtMatForro = new JTextField(200);
+            
+            txtPalm = new JTextField(200);
+            txtFecha = new JTextField(200);
+            txtPisada = new JTextField(200); 
+            txtAltCano = new JTextField(200);
+            indicacao = new JLabel("indicação: ");
+            txtIndicacao = new JTextField(200);
 
-            materialDoForro.setBounds(30,330,100,30);
+            materialForro.setBounds(30,330,100,30);
             txtMatForro.setBounds(100,330,100,30);
             palmilha.setBounds(30,360,100,30);
             txtPalm.setBounds(100,360,100,30);
@@ -243,8 +251,7 @@ public class TelaDetalheProduto {
             indicacao.setBounds(30,480,100,30);
             txtIndicacao.setBounds(100,480,100,30);
 
-            janela.add(materialDoForro);
-            janela.add(txtMatForro);
+            janela.add(materialForro);
             janela.add(palmilha);
             janela.add(txtPalm);
             janela.add(fechamento);
@@ -326,10 +333,10 @@ public class TelaDetalheProduto {
         txtCusto = new JTextField(200);
         txtFornecedor = new JTextField(200);
 
+        //coloca campos especificos de bota, sapato social e tênis
         if(op == 0 || op == 4 || op == 5){
 
-            JLabel palmilha = new JLabel("Palmilha: ");
-            JTextField txtPalm = new JTextField(200);
+            txtPalm = new JTextField(200);
 
             palmilha.setBounds(30,360,100,30);
             txtPalm.setBounds(100,360,100,30);
@@ -339,9 +346,9 @@ public class TelaDetalheProduto {
 
         }
 
+        //coloca campos especificos de bota,chuteira, sandália e tênis
         if(op == 0 || op == 2 || op == 3 || op == 5){
-            JLabel fechamento = new JLabel("Fechamento: ");
-            JTextField txtFecha = new JTextField(200);
+            txtFecha = new JTextField(200);
 
             fechamento.setBounds(30,390,100,30);
             txtFecha.setBounds(120,390,100,30);
@@ -351,9 +358,9 @@ public class TelaDetalheProduto {
 
         }
 
+        //coloca campos especificos de bota, chuteira, sapato social e tênis
         if(op == 0 || op == 2 || op == 4 || op == 5){
-            JLabel materialForro = new JLabel("Material Forro: "); 
-            JTextField txtMatForro = new JTextField(200);
+            txtMatForro = new JTextField(200);
             
             materialForro.setBounds(30,420,100,30);
             txtMatForro.setBounds(120,420,100,30);
@@ -362,10 +369,9 @@ public class TelaDetalheProduto {
             janela.add(txtMatForro);
 
         }
-
+        //coloca campos especificos de bota e tênis
         if(op == 0 || op == 5){
-            JLabel altCano = new JLabel("Altura do Cano: "); 
-            JTextField txtAltCano = new JTextField(200); 
+            txtAltCano = new JTextField(200); 
             
             altCano.setBounds(30,450,100,30);
             txtAltCano.setBounds(120,450,100,30);
@@ -373,10 +379,9 @@ public class TelaDetalheProduto {
             janela.add(altCano);
             janela.add(txtAltCano);
         }
-
+        //coloca campos especificos de sandália e sapato social
         if(op == 3 || op == 4){
-            JLabel alturaDoSalto = new JLabel("Altura do Salto: ");
-            JTextField txtAltSalto = new JTextField(200);
+            txtAltSalto = new JTextField(200);
 
             alturaDoSalto.setBounds(30,330,100,30);
             txtAltSalto.setBounds(100,330,100,30);
@@ -386,8 +391,7 @@ public class TelaDetalheProduto {
 
             String[] nomeCategoria = {"Bota","Chinelo","Chuteira","Sandália","Sapato Social","Tenis"};
             JComboBox<String> listaCateg = new JComboBox<String>(nomeCategoria);
-            JLabel lingueta = new JLabel("Lingueta: ");
-            JTextField txtLing = new JTextField(200);
+            txtLing = new JTextField(200);
 
             listaCateg.setBounds(100,30,100,30);
             lingueta.setBounds(30,330,100,30);
@@ -399,10 +403,10 @@ public class TelaDetalheProduto {
 
         }else if(op == 1){
             
-            JLabel materialTira = new JLabel("Material da Tira: ");
-            JTextField txtMatTira = new JTextField(200);
-            JLabel solado = new JLabel("Solado: ");
-            JTextField txtSolado = new JTextField(200);
+            materialTira = new JLabel("Material da Tira: ");
+            txtMatTira = new JTextField(200);
+            solado = new JLabel("Solado: ");
+            txtSolado = new JTextField(200);
 
             materialTira.setBounds(30,330,100,30);
             txtMatTira.setBounds(100,330,100,30);
@@ -416,12 +420,12 @@ public class TelaDetalheProduto {
 
         }else if(op == 2){
 
-            JLabel superficie = new JLabel("Superficie: ");
-            JTextField txtSup = new JTextField(200);
-            JLabel tecnologia = new JLabel("Tecnologia: ");
-            JTextField txtTecno = new JTextField(200);
-            JLabel linha = new JLabel("Linha: ");
-            JTextField txtLinha = new JTextField(200);
+            superficie = new JLabel("Superficie: ");
+            txtSup = new JTextField(200);
+            tecnologia = new JLabel("Tecnologia: ");
+            txtTecno = new JTextField(200);
+            linha = new JLabel("Linha: ");
+            txtLinha = new JTextField(200);
 
             superficie.setBounds(30,330,100,30);
             txtSup.setBounds(100,330,100,30);
@@ -439,8 +443,8 @@ public class TelaDetalheProduto {
 
         }else if(op == 3){
            
-            JLabel tipoDeSalto = new JLabel("Tipo de Salto: ");
-            JTextField txtTipoSalto = new JTextField(200);
+            tipoDeSalto = new JLabel("Tipo de Salto: ");
+            txtTipoSalto = new JTextField(200);
 
             tipoDeSalto.setBounds(30,330,100,30);
             txtTipoSalto.setBounds(120,330,100,30);
@@ -450,10 +454,7 @@ public class TelaDetalheProduto {
 
         }else if(op == 4){
 
-            JLabel tipoDeBico = new JLabel("Tipo de Bico: ");
             JTextField txtTipoBico = new JTextField(200);
-            JLabel alturaDoSalto = new JLabel("Altura do Salto: ");
-            JTextField txtAltSalto = new JTextField(200);
 
             tipoDeBico.setBounds(30,330,100,30);
             txtTipoBico.setBounds(100,330,100,30);
@@ -466,11 +467,9 @@ public class TelaDetalheProduto {
             janela.add(txtAltSalto);
 
         }else if(op == 5){
-
-            JLabel pisada = new JLabel("Pisada: ");
-            JTextField txtPisada = new JTextField(200);
-            JLabel indicacao = new JLabel("indicação: ");
-            JTextField txtIndicacao = new JTextField(200);
+            
+            txtPisada = new JTextField(200);
+            txtIndicacao = new JTextField(200);
 
             pisada.setBounds(30,330,100,30);
             txtPisada.setBounds(100,330,100,30);

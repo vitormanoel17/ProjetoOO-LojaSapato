@@ -2,49 +2,55 @@ package model;
 import java.util.*;
 
 public class Dados {
-	private Cliente[] cliente = new Cliente[50];
-	private Funcionario[] funcionario = new Funcionario[50];
-	private Venda[] vendas = new Venda[50];
-	private Telefone[] tel = new Telefone [50];
-	private Endereco[] end = new Endereco[50];
-	private Bota[] bota = new Bota[50];
-	private Fornecedor[] fornecedor = new Fornecedor[50];
+	private ArrayList<Cliente> cliente = new ArrayList<Cliente>();
+	private ArrayList<Funcionario> funcionario = new ArrayList<Funcionario>();
+	private ArrayList<Venda> vendas = new ArrayList<Venda>();
+	private ArrayList<Telefone> tel = new ArrayList<Telefone>();
+	private ArrayList<Endereco> end = new ArrayList<Endereco>();
+	private ArrayList<Bota> bota = new ArrayList<Bota>();
+	private ArrayList<Fornecedor> fornecedor = new ArrayList<Fornecedor>();
 	private Estoque estoque = new Estoque();
 	private Financeiro financeiro = new Financeiro(estoque);
+	private Date d;
 	
 	public void fileWithSomeData() {
-		Date d = Calendar.getInstance().getTime();
+		d = Calendar.getInstance().getTime();
 		
 		// instanciando os objetos
 		for (int i = 0; i<10;i++) {
-			tel[i] = new Telefone(11*i,11111111*i);
+			tel.add( new Telefone(11*i,11111111*i));
 			
-			end[i] = new Endereco("cidade"+i,"estado"+i,"12"+i,1+i,"bairro"+i,"logradouro"+i);
+			end.add(new Endereco("cidade"+i,"estado"+i,"12"+i,1+i,"bairro"+i,"logradouro"+i));
 			
-			cliente[i] = new Cliente(end[i],tel[i],"nome"+i);
+			cliente.add(new Cliente(end.get(i),tel.get(i),"nome"+i));
 			
-			funcionario[i] = new Funcionario(end[i],tel[i],"Name"+i,"cargo"+1,d,1000*i);
+			funcionario.add(new Funcionario(end.get(i),tel.get(i),"Name"+i,"cargo"+1,d,1000*i));
 			
-			fornecedor[i] = new Fornecedor("noem"+i,end[i],tel[i]);
+			fornecedor.add(new Fornecedor("noem"+i,end.get(i),tel.get(i)));
 			
-			bota[i] = new Bota("bota","cor"+i,30+i,"marca"+i,"material"+1,200+10*i,"descricao"+i,100+i);
+			bota.add(new Bota("bota","cor"+i,30+i,"marca"+i,"material"+1,200+10*i,"descricao"+i,100+i));
 			
-			vendas[i] = new Venda(estoque,bota[i],cliente[i],funcionario[i],d);
+			vendas.add(new Venda(estoque,bota.get(i),cliente.get(i),funcionario.get(i),d));
 	
-			vendas[i].realizarVenda();
+			vendas.get(i).realizarVenda();
 			
-			estoque.setCalcado(bota[i]);
+			estoque.setCalcado(bota.get(i));
 			
-			financeiro.setVenda(vendas[i]);
+			financeiro.setVenda(vendas.get(i));
 		}
-		vendas[11] = new Venda(estoque,bota[1],cliente[2],funcionario[1],d);
-		vendas[11].realizarVenda();
-		vendas[12] = new Venda(estoque,bota[2],cliente[2],funcionario[1],d);
-		vendas[12].realizarVenda();
-		vendas[13] = new Venda(estoque,bota[3],cliente[2],funcionario[1],d);
-		vendas[13].realizarVenda();
-		vendas[14] = new Venda(estoque,bota[4],cliente[2],funcionario[1],d);
-		vendas[14].realizarVenda();
+		vendas.add(new Venda(estoque,bota.get(1),cliente.get(2),funcionario.get(1),d));
+		vendas.get(10).realizarVenda();
+		vendas.add(new Venda(estoque,bota.get(2),cliente.get(2),funcionario.get(1),d));
+		vendas.get(11).realizarVenda();
+		vendas.add( new Venda(estoque,bota.get(3),cliente.get(2),funcionario.get(1),d));
+		vendas.get(12).realizarVenda();
+		vendas.add(new Venda(estoque,bota.get(4),cliente.get(2),funcionario.get(1),d));
+		vendas.get(13).realizarVenda();
+		
+	}
+
+	public Date getDate(){
+		return d;
 	}
 
 	public Estoque getEstoque() {
@@ -63,68 +69,73 @@ public class Dados {
 		this.financeiro = financeiro;
 	}
 
-	public Venda[] getVendas() {
+	public ArrayList<Venda> getVendas() {
 		return vendas;
 	}
 
-	public Cliente[] getCliente() {
+	public ArrayList<Cliente> getCliente() {
 		return cliente;
 	}
 
 	public Cliente getCliente(int i) {
-		return cliente[i];
+		return cliente.get(i);
 	}
 
-	public void setCliente(Cliente[] cliente) {
-		this.cliente = cliente;
+	public void setCliente(Cliente cliente) {
+		this.cliente.add(cliente);
 	}
 
-	public Funcionario[] getFuncionario() {
+	public ArrayList<Funcionario> getFuncionario() {
 		return funcionario;
 	}
 
-	public void setFuncionario(Funcionario[] funcionario) {
-		this.funcionario = funcionario;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario.add(funcionario);
 	}
 
 	public Venda getVendas(int i) {
-		return vendas[i];
+		return vendas.get(i);
 	}
 
-	public void setVendas(Venda[] vendas) {
-		this.vendas = vendas;
+	public void setVendas(Venda vendas) {
+		this.vendas.add(vendas);
 	}
 
-	public Telefone[] getTel() {
+	public void inserirVenda(Venda venda,int i) {
+		this.vendas.add(venda);
+		financeiro.setVenda(venda);
+	}
+
+	public ArrayList<Telefone> getTel() {
 		return tel;
 	}
 
-	public void setTel(Telefone[] tel) {
-		this.tel = tel;
+	public void setTel(Telefone tel) {
+		this.tel.add(tel);
 	}
 
-	public Endereco[] getEnd() {
+	public ArrayList<Endereco> getEnd() {
 		return end;
 	}
 
-	public void setEnd(Endereco[] end) {
-		this.end = end;
+	public void setEnd(Endereco end) {
+		this.end.add(end);
 	}
 
-	public Bota[] getBota() {
+	public ArrayList<Bota> getBota() {
 		return bota;
 	}
 
-	public void setBota(Bota[] bota) {
-		this.bota = bota;
+	public void setBota(Bota bota) {
+		this.bota.add(bota);
 	}
 
-	public Fornecedor[] getFornecedor() {
+	public ArrayList<Fornecedor> getFornecedor() {
 		return fornecedor;
 	}
 
-	public void setFornecedor(Fornecedor[] fornecedor) {
-		this.fornecedor = fornecedor;
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor.add(fornecedor);
 	}
 	
 }

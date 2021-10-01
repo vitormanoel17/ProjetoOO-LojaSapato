@@ -8,10 +8,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class TelaSelProd implements ListSelectionListener{
-    JFrame janela = new JFrame("Seleção de Produto");
-    JLabel desc = new JLabel("Escolha a Categoria de calçado que deseja cadastrar:");
-    String[] nomeCategoria = {"Bota","Chinelo","Chuteira","Sandália","Sapato Social","Tenis"};
-    JList<String> listaCategoria = new JList<String>(nomeCategoria);
+    
+    private JFrame janela = new JFrame("Seleção de Produto");
+    private JLabel desc = new JLabel("Escolha a Categoria de calçado que deseja cadastrar:");
+    private String[] nomeCategoria = {"Bota","Chinelo","Chuteira","Sandália","Sapato Social","Tenis"};
+    private JList<String> listaCategoria = new JList<String>(nomeCategoria);
 
     public TelaSelProd(){
         janela.setSize(400,250);

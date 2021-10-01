@@ -7,7 +7,7 @@ public class Venda {
 	private Cliente cliente;
 	private Funcionario funcionario;
 	private Date dataDaVenda;
-	private float ValorTot;
+	private float valorTot;
 	
 	public Venda(Estoque estoque, Calcado calcado, Cliente cliente, 
 			Funcionario funcionario, Date dataDaVenda) {
@@ -21,7 +21,7 @@ public class Venda {
 	
 	// m�todo para finalizar a venda
 	public void realizarVenda(){
-		this.ValorTot = this.getCliente().ganharDesconto(this.getCalcado().getPreco());
+		this.valorTot = this.getCliente().ganharDesconto(this.getCalcado().getPreco());
 		this.funcionario.setQuantDeVendas(funcionario.getQuantDeVendas()+1);
 		this.cliente.setCompra(calcado,dataDaVenda);
 		this.cliente.setQuantCompras(cliente.getQuantCompras()+1);
@@ -68,11 +68,11 @@ public class Venda {
 	}
 	
 	public float getValorTot() {
-		return ValorTot;
+		return valorTot;
 	}
 
 	public void setValorTot(float valorTot) {
-		ValorTot = valorTot;
+		this.valorTot = valorTot;
 	}
 	
 	@Override

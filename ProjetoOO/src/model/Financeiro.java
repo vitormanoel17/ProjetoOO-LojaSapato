@@ -104,6 +104,10 @@ public class Financeiro {
 		venda.add(v);
 	}
 
+	public ArrayList<Venda> getVenda(){
+		return venda;
+	}
+
 	public float getSaldo() {
 		return saldo;
 	}

@@ -41,6 +41,10 @@ public class TelaMenu implements ActionListener{
         botao5.addActionListener(this);
     }
 
+    public static void main (String[] args){
+        TelaMenu tela = new TelaMenu();
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         Object search = e.getSource();

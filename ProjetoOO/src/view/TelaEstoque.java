@@ -16,13 +16,15 @@ import controller.ControleEstoque;
 
 public class TelaEstoque implements ListSelectionListener,ActionListener{
 
-    JFrame janela = new JFrame("Estoque");
-    JButton adProd = new JButton("Adicionar Produto");
-    JButton remProd = new JButton("Remover Produto"); 
-    JLabel txtProd = new JLabel("Produtos: ");
-    JTable tabela;
-    JScrollPane tabScroll;
-    ControleEstoque e;
+    private JFrame janela = new JFrame("Estoque");
+    private JButton adProd = new JButton("Adicionar Produto");
+    private JButton remProd = new JButton("Remover Produto"); 
+    private JLabel txtProd = new JLabel("Produtos: ");
+    private JTable tabela;
+    private JScrollPane tabScroll;
+    private ControleEstoque e;
+    private Object[][] lista;
+    private Object[] colName = {"Categoria","cor","Tamanho","Marca"};;
 
     public TelaEstoque(ControleDados d){
 
@@ -49,8 +51,7 @@ public class TelaEstoque implements ListSelectionListener,ActionListener{
     
     public void criarTabela(){
 
-        Object[][] lista = new Object[50][4];
-        Object[] colName = {"Categoria","cor","Tamanho","Marca"};
+        lista = new Object[50][4];
 
         if (!e.getEstoque().getCalcado().isEmpty()){
         
