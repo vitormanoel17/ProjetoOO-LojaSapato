@@ -53,27 +53,33 @@ public class Financeiro {
 		for(int i = 0; i < estoque.getCalcado().size(); i++) {
 			this.contasApagar += estoque.getCalcado().get(i).getCusto();
 		}
-		return "Valor pendente: "+ this.contasApagar + " R$" ;
+		return "Valor pendente:" + " R$ " + this.contasApagar ;
 	}
 	
 	// calcula o valor a receber pelas vendas
 	public String contasAreceber() {
+		this.contasAreceber = 0;
 		for(Venda v : venda){
 			this.contasAreceber += v.getValorTot();
 		}
-		return "Valor a Receber: "+ this.contasAreceber + " R$" ;
+		return "Valor a Receber: " + " R$ " + this.contasAreceber;
 	}
 	
 	// lista as vendas realizadas
-	public void historicoVendas() {
+	public String[] historicoVendas() {
+		String[] vendas = new String[venda.size()];
+		int i = 0;
 		if(!venda.isEmpty()) {
-			System.out.println("--------------------VENDAS-------------------\n");
+		
 			for(Venda v : venda) {
-				System.out.println((venda.indexOf(v)+1)+ " - "+ v.toString());
+				vendas[i] = i + " - "+ v.toString();
+				i++;
 			}
+		
 		}else{
 			System.out.println("nenhuma venda encontrada!");
 		}
+		return vendas;
 	}
 	
 	// calcula o valor do saldo da loja
