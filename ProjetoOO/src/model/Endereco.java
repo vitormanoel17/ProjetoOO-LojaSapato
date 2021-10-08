@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * Classe que representa um Endereço de uma pessoa
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class Endereco {
 	private String cidade;
 	private String estado;

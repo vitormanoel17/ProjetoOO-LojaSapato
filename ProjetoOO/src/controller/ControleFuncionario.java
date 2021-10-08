@@ -6,6 +6,11 @@ import model.Funcionario;
 import model.Telefone;
 import java.util.*;
 
+/**
+ * Classe que controla os Funcionários cadastrados no sistema
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class ControleFuncionario {
     ArrayList<Funcionario> f;
     
@@ -23,7 +28,12 @@ public class ControleFuncionario {
         
         return nomes;
     }
-
+    
+    /**
+     * Método para realizar busca por nome de funcionário 
+     * @param nome String que representa o nome a ser buscado
+     * @return retorna uma lista de nomes encontrados ou mensagem de não encontrado
+     */
     
     public String[] buscarNome(String nome){
         ArrayList<String> resultado = new ArrayList<>();
@@ -41,18 +51,28 @@ public class ControleFuncionario {
 
         return resultado.toArray(new String[0]);
     }
+    
+    /**
+     * Método que busca o index do nome encontrado na busca
+     * @param busca recebe o resultado da busca por nome
+     * @return retorna um array com as posições nas quais o nome pesquisado é encontrado
+     */
 
-    public int getIndexBusca(String [] busca){
-        int index = 0;
+    /*retorna um array com diferentes index de posição, para que seja possivel carregar os dados do cliente correto,
+    caso tenha varios funcionarios com o mesmo nome*/
+    public int[] getIndexBusca(String [] busca){
+        int[] index = new int[f.size()];
+        int j = 0;
+
         for(int i = 0; i< f.size(); i++ ){
             if(f.get(i).getNome().contains(busca[0])){
-                index = i;
+                index[j] = i;
+                j++;
             }
 
         }   
         return index;
     }
-
 
     public String getNome(int i){
         return f.get(i).getNome();

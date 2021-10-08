@@ -1,6 +1,11 @@
 package model;
 import java.util.Date;
 
+/**
+ * Classe que modela as caracteristicas de uma venda e implementa a realização de venda
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class Venda {
 	private Estoque estoque;
 	private Calcado calcado;
@@ -19,7 +24,11 @@ public class Venda {
 		this.dataDaVenda = dataDaVenda;
 	}
 	
-	// mï¿½todo para finalizar a venda
+	/**
+	 * Método que finaliza uma venda e atribui os valores aos atributos relacionados 
+	 */
+	
+	// metodo para finalizar a venda
 	public void realizarVenda(){
 		this.valorTot = this.getCliente().ganharDesconto(this.getCalcado().getPreco());
 		this.funcionario.setQuantDeVendas(funcionario.getQuantDeVendas()+1);

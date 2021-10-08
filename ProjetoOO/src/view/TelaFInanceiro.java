@@ -6,6 +6,12 @@ import javax.swing.JList;
 
 import controller.ControleDados;
 
+/**
+ * Classe que gera tela financeiro, apresentando
+ * os dados de vendas.
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class TelaFInanceiro {
     
     JFrame janela = new JFrame("Financeiro");

@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * Classe que modela o objeto chinelo por meio de suas características
+ * @author Vitor manoel
+ * @version 1.0
+ */
+
 public class Chinelo extends Calcado {
 	
 	private String materialTira;

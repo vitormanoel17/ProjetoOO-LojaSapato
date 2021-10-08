@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * Classe que implementa as características comuns a um calçado
+ * @author Vitor manoel
+ * @version 1.0
+ */
+
 public abstract class Calcado {
 	private String categoria;
 	private String cor;

@@ -1,4 +1,10 @@
 package model;
+
+/** 
+ * Classe que representa o fornecedor de produtos do estabelecimento
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class Fornecedor {
 	private String nome;
 	private Endereco endereco;

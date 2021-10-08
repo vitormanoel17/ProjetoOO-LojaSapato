@@ -5,6 +5,11 @@ import javax.swing.event.*;
 import javax.swing.*;
 import controller.*;
 
+/**
+ * Classe que gera tela relacionada ao estoque
+ * @author Vitor manoel
+ *	@version 1.0
+ */
 public class TelaEstoque implements ListSelectionListener,ActionListener{
 
     private JFrame janela = new JFrame("Estoque");
@@ -18,8 +23,14 @@ public class TelaEstoque implements ListSelectionListener,ActionListener{
     private JList<String> listaProdutos;
     private String categoria;
     private Boolean active = false;
-    private int pos;
-
+    private int[] pos;
+    
+    
+    /**
+     * 	Metodo que cria tela com a lista de produtos em estoque
+     * @param d dados cadastrados no sistema
+     */
+    
     public void mostrarEstoque(ControleDados d){
         
         this.d = d;
@@ -52,27 +63,47 @@ public class TelaEstoque implements ListSelectionListener,ActionListener{
         janela.setVisible(true);
 
     }    
-
+    
+    /**
+     * Captura os eventos relacionados ao JList
+     * (1) verifica se ha uma busca ativa no momento,
+     * e baseado nisso envia a posicao do elemento requerido
+     * pelo usuario para visualizacao de detalhes do produto
+     */
     public void valueChanged(ListSelectionEvent e){
+
+        pos = new int[this.e.getEstoque().getCalcado().size()];
         
         if(active){
             pos = this.e.getIndexBusca(this.e.buscarNome(categoria));
         }else{
-            pos = listaProdutos.getSelectedIndex();
+            pos[listaProdutos.getSelectedIndex()] = listaProdutos.getSelectedIndex();
         }        
 
         if(e.getValueIsAdjusting()){
 
-            System.out.println(pos);
-            new TelaDetalheProduto(pos,d,2).telaDetalhe();        
+            System.out.println(pos[listaProdutos.getSelectedIndex()]);
+            System.out.println(listaProdutos.getSelectedIndex());
+            new TelaDetalheProduto(pos[listaProdutos.getSelectedIndex()],d,2).telaDetalhe();        
         }
     }
 
-    // 
+    /**
+     * Captura eventos relacionados ao JButton
+     * (1) verifica se o botao selecionado foi o de adicionar produto,
+     * caso tenha sido gera nova tela para selecionar o tipo de produto
+     * que sera cadastrado.
+     * (2) verifica se o botao selecionafo foi o botao de atualizar,
+     * caso tenha sido insere uma nova lista com os dados atualizados.
+     * (3) verifica se o botao selecionado foi o botao de busca,
+     * caso tenha sido realizado uma busca pela categoria do produto
+     * requisitado.
+     */
+    
     public void actionPerformed(ActionEvent e){
         Object search = e.getSource();
 
-        // Leva a tela de seleção de cadastro de novo produto
+        // gera a tela de selecao de cadastro de novo produto
         if(search == adProd){
             new TelaSelProd(d);
         }
@@ -81,7 +112,6 @@ public class TelaEstoque implements ListSelectionListener,ActionListener{
         if(search == atualizar){
             active = false;
 
-            this.e = new ControleEstoque(d);
             listaProdutos.setListData(this.e.getEstoque().listarProdutos());
             listaProdutos.updateUI();
             this.e.mensagem();

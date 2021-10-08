@@ -1,6 +1,12 @@
 package model;
 import java.util.*;
 
+/**
+ *  Determina dados pré cadastrados, para substituir o uso de um banco de dados
+ * @author Vitor manoel
+ * @version 1.0
+ */
+
 public class Dados {
 	private ArrayList<Cliente> cliente = new ArrayList<Cliente>();
 	private ArrayList<Funcionario> funcionario = new ArrayList<Funcionario>();
@@ -13,6 +19,9 @@ public class Dados {
 	private Financeiro financeiro = new Financeiro(estoque);
 	private Date d;
 	
+	/**
+	 * Método responsável por carregar dados no sistema quando solicitado
+	 */
 	public void fileWithSomeData() {
 		d = Calendar.getInstance().getTime();
 		

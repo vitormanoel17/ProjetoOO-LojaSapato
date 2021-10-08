@@ -13,15 +13,20 @@ import controller.ControleCliente;
 import controller.ControleDados;
 import controller.ControleFuncionario;
 
+/**
+ * Classe que gera tela com os detalhes de um cliente ou funcionï¿½rio
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class TelaDetalhe implements ActionListener{
 
     private JFrame tela = new JFrame("Detalhes");
     private JLabel nome = new JLabel("Nome: ");
-    private JLabel endereco = new JLabel("Endereço: ");
+    private JLabel endereco = new JLabel("EndereÃ§o: ");
     private JLabel cidade = new JLabel("Cidade: ");
     private JLabel estado = new JLabel("Estado: ");
     private JLabel cep = new JLabel("Cep: ");
-    private JLabel numEnd = new JLabel("Numº:");
+    private JLabel numEnd = new JLabel("NumÂº:");
     private JLabel bairro = new JLabel("Bairro:");
     private JLabel logradouro = new JLabel("Logradouro: ");
     private JLabel ddd = new JLabel("DDD: ");
@@ -48,9 +53,15 @@ public class TelaDetalhe implements ActionListener{
     private int escolha;
     private ControleDados d;
     private ControleCliente c;
-    private ControleFuncionario func;
-    private String[] novosDados = new String[12];
-
+    private ControleFuncionario func;  
+    
+    /**
+     * Método para construir tela com detalhes do cliente ou funcionário
+     * @param pos indica a posição do cliente ou funcionario que será mostrado
+     * @param dados dados cadastrados no sistema
+     * @param sel indica se a construção de tela será para um funcionário ou cliente
+     * @param escolha indica qual operação deve ser realizada: cadastro ou alteração
+     */
     public void mostrarDetalhes(int pos, ControleDados dados,int sel, int escolha){
         this.sel = sel;
         this.pos = pos;
@@ -91,7 +102,7 @@ public class TelaDetalhe implements ActionListener{
             txtDDD = new JTextField(String.valueOf(func.getTelefone(pos).getDdd()),200);
             txtTel = new JTextField(String.valueOf(func.getTelefone(pos).getNumero()),200);
             qtdVendas = new JLabel("Quantidade de Vendas: " + String.valueOf(func.getQuantVendas(pos)));
-            salario = new JLabel("Salário: " + String.valueOf(func.getSalario(pos)));
+            salario = new JLabel("SalÃ¡rio: " + String.valueOf(func.getSalario(pos)));
 
             salario.setBounds(400,30,200,30);
             qtdVendas.setBounds(400,60,200,30);
@@ -154,7 +165,7 @@ public class TelaDetalhe implements ActionListener{
         tela.add(btnSalvar);
         tela.add(botaoRemove);
 
-            //Verifica se a opçao selecionada foi visualizar detalhes 
+            //Verifica se a opção selecionada foi visualizar detalhes 
             if(escolha == 2){
 
                 //posiciona os botoes em posições diferentes caso tela seja para cliente
@@ -187,11 +198,16 @@ public class TelaDetalhe implements ActionListener{
         
     }
     
+    
+    /**
+     * Cria tabela com informações de compra de um cliente
+     */
+    
     //gera tabela com informações de compra do cliente
     public void criarTabela(){
 
         Object[][] lista = new Object[50][3];
-        Object[] colName = {"Data","Categoria","Preço"};
+        Object[] colName = {"Data","Categoria","PreÃ§o"};
 
         if (c.getQtdCompras(pos) != 0){
         
@@ -211,9 +227,23 @@ public class TelaDetalhe implements ActionListener{
         
     }
     
+    /**
+     * Metodo que captura os eventos relacionados ao Jbutton
+     * (1) verifica se o botão selecionado foi bot�o de salvar,
+     * caso tenha sido, captura os valores dos JtextField para cadastro ou editar.
+     * verifica tambem se a seleção foi de cadastro ou edição de cliente, ou cadastro
+     * ou edição de funcion�rio
+     * (2) verifica se o botão selecionado foi o botão de remover,
+     * caso tenha sido, envia a posição cliente ou funcionário a ser removido
+     * (3) verifica se o botão selecionado foi o botão de cancelar,
+     * caso tenha sido, fecha a janela
+     */
+    
     public void actionPerformed(ActionEvent e){
         Object search = e.getSource();
-
+        Boolean res = false;
+        String[] novosDados = new String[12];  
+        
         if(search == btnSalvar){
 
             novosDados[0] = txtNome.getText();
@@ -228,17 +258,21 @@ public class TelaDetalhe implements ActionListener{
 
             // Atualiza dados de cliente ou cadastra novo cliente
             if(sel == 1 || sel == 3){
-            
-                d.inserirEditarCliente(novosDados, pos,escolha);
-            
-            // Atualiza dados de funcionário ou cadastra no funcionário
+                    
+                res = d.inserirEditarCliente(novosDados, pos,escolha);
+
+            // Atualiza dados de funcionário ou cadastra novo funcionário
             }else if (sel == 2 || sel == 4){
 
-                d.inserirEditarFuncionario(novosDados, pos,escolha);
+                res = d.inserirEditarFuncionario(novosDados, pos,escolha);
 
             }
-            JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
-            tela.dispose();
+            if(res){
+                JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
+                tela.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Erro ao tentar cadastrar Dados", null, JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
         if(search == botaoRemove){
@@ -250,10 +284,10 @@ public class TelaDetalhe implements ActionListener{
                 tela.dispose();
             }
 
-            //Remove o Funcionário selecionado na lista
+            //Remove o Funcionario selecionado na lista
             if(sel == 2){
 
-                d.removerFuncionanrio(pos);
+                d.removerFuncionario(pos);
                 mensagemExclusao();
                 tela.dispose();
             }
@@ -263,11 +297,19 @@ public class TelaDetalhe implements ActionListener{
             tela.dispose();
         }
     }
-
+    
+    /**
+     * Apresenta mensagem indicando que a exclusao foi realizada com sucesso
+     */
+    
     public void mensagemExclusao(){
-        JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "ExclusÃ£o realizada com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
     }
-
+    
+    /**
+     * Apresenta mensagem indicando que nenhum item da lista foi selecionado
+     */
+    
     public void mensagemErroListaSel(){
         JOptionPane.showMessageDialog(null, "Selecione um item da Lista", null, JOptionPane.INFORMATION_MESSAGE);
     }

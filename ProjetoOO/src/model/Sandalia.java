@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Classe que representa o Objeto sandália e suas caracteristicas fisicas
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class Sandalia extends Calcado{
 	private int alturaDoSalto;
 	private String tipoDeSalto;

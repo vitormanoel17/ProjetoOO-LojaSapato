@@ -1,6 +1,11 @@
 package model;
 import java.util.Date;
 
+/**
+ * Classe que representa o Funcionário do estabelecimento
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class Funcionario extends Pessoa {
 	private String cargo;
 	private int quantDeVendas;

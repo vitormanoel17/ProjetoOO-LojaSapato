@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Classe que representa o objeto Tênis e suas caracteristicas fisicas
+ * @author Vitor manoel
+ * @version 1.0 
+ */
 public class Tenis extends Calcado{
 	private String materialDoForro;
 	private String pamilha;

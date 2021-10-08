@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * Classe que modela o objeto chuteira por meio de suas características
+ * @author Vitor manoel
+ * @version 1.0
+ */
+
 public class Chuteira extends Calcado{
 	
 	private String superficie;

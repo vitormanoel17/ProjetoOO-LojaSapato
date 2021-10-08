@@ -4,6 +4,11 @@ import javax.swing.*;
 import javax.swing.event.*;
 import controller.ControleDados;
 
+/**
+ * Classe que gera tela de seleção de produto a ser cadastrado
+ * @author Vitor manoel
+ *
+ */
 public class TelaSelProd implements ListSelectionListener{
     
     private JFrame janela = new JFrame("SeleÃ§Ã£o de Produto");
@@ -26,7 +31,13 @@ public class TelaSelProd implements ListSelectionListener{
         janela.setLayout(null);
         janela.setVisible(true);
     }
-
+    
+    /**
+     * Captura eventos relacionados ao JList
+     * (1) Envia a posição do item selecionado ma lista,
+     * para gerar a tela detalhe produto com os campos necessários
+     * para cadastro.
+     */
     public void valueChanged(ListSelectionEvent e){
 
         // Gera tela para cadastro de novo produto

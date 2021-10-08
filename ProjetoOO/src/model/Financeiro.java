@@ -1,6 +1,12 @@
 package model;
 import java.util.*;
 
+/** Classe que gerencia as vendas e a receita do estabelecimento
+ * 	
+ * @author Vitor manoel
+ * @version 1.0
+ */
+
 public class Financeiro {
 	private float contasApagar;
 	private int contasAreceber;
@@ -47,6 +53,11 @@ public class Financeiro {
 		
 	}
 	
+	/**
+	 * Método que realiza o cálculo do custo da compra dos produtos cadastrados no estoque 
+	 * @return retorna String contendo valor total do custo dos produtos em estoque
+	 */
+	
 	// calcula o valor a ser pago pelos produtos em estoque
 	public String contasPendentes() {
 		this.contasApagar = 0;
@@ -56,6 +67,11 @@ public class Financeiro {
 		return "Valor pendente:" + " R$ " + this.contasApagar ;
 	}
 	
+	/**
+	 * Método que realiza o cálculo do ganho das vendas já realizadas 
+	 * @return retorna String com valor total do ganho em vendas
+	 */
+	
 	// calcula o valor a receber pelas vendas
 	public String contasAreceber() {
 		this.contasAreceber = 0;
@@ -64,6 +80,11 @@ public class Financeiro {
 		}
 		return "Valor a Receber: " + " R$ " + this.contasAreceber;
 	}
+	
+	/**
+	 * Método que lista as vendas já realizadas
+	 * @return retorna lista descrevendo as vendas cadastradas
+	 */
 	
 	// lista as vendas realizadas
 	public String[] historicoVendas() {
@@ -81,6 +102,11 @@ public class Financeiro {
 		}
 		return vendas;
 	}
+	
+	/**
+	 * Método que calcula o saldo da loja
+	 * @return retorna o saldo da loja
+	 */
 	
 	// calcula o valor do saldo da loja
 	public String calculoSaldo() {

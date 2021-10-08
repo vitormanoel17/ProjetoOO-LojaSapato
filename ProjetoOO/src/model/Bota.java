@@ -1,5 +1,13 @@
 package model;
 
+/** 
+ * Classe que modela o Objeto Bota por meio de suas caracteristicas
+ *  @author Vitor Maneoel
+ *  @version 1.0
+ * 
+ * 
+*/
+
 public class Bota extends Calcado {
 	private String lingueta;
 	private String palmilha;

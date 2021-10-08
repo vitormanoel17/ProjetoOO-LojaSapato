@@ -1,6 +1,11 @@
 package model;
 import java.util.*;
 
+/**
+ * Classe que representa um estoque, armazenando os calçados cadastrados
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class Estoque {
 	private ArrayList<Calcado> calcado = new ArrayList<>();
 	
@@ -13,6 +18,11 @@ public class Estoque {
 		calcado.add(c);
 	}
 	
+	/**
+	 * Método que lista os produtos cadastrados no sistema
+	 * @return	vetor de Strings que lista os produtos cadastrados
+	 */
+	
 	public String[] listarProdutos() {
 		String[] detalhe = new String[calcado.size()];
 		int i = 0;
@@ -24,7 +34,10 @@ public class Estoque {
 		return detalhe;
 	}
 	
-	
+	/**
+	 * Método emite um alerta de estoque baixo, caso a quantidade de produtos seja menor do que 5
+	 * @return verdadeiro ou falso, emitindo se o estoque está baixo ou não
+	 */
 	public boolean avisarEstoqueBaixo() {
 		if(calcado.size() < 5) {
 			System.out.println("Estoque esgotando! ");

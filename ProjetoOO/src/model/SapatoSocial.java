@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Classe que representa o objeto sapato social e suas caracteristicas fisicas
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class SapatoSocial extends Calcado{
 	private String materialDoForro;
 	private String tipoDeBico;

@@ -1,6 +1,10 @@
 package model;
 import java.util.*;
-
+/**
+ * Representa uma compra feita por um cliente armaazenando as informações necessárias
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class Compra {
 	private Calcado calcado;
 	private Date dataDaCompra;

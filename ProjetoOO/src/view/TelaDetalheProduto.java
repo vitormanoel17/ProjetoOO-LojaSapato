@@ -5,6 +5,11 @@ import javax.swing.*;
 import controller.*;
 import model.*;
 
+/**
+ * Classe que gera tela com os campos para insercao ou edicao de produtos
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class TelaDetalheProduto implements ActionListener{
     private ControleDados d;
     private ControleEstoque e;
@@ -65,7 +70,6 @@ public class TelaDetalheProduto implements ActionListener{
     private int pos;
     private int op;
     private int escolha;
-    private String[] novosDados = new String[25];
     
     public TelaDetalheProduto(int pos, ControleDados dados,int escolha){
         this.d = dados;
@@ -88,7 +92,11 @@ public class TelaDetalheProduto implements ActionListener{
         janela.setLayout(null);
         janela.setVisible(true);
     }
-
+    
+    /**
+     * Adiciona os campos comuns a todos os produtos 
+     */
+    
     // Adiciona os campos comuns a todos os produtos
     public void getDadosComuns(){
 
@@ -105,7 +113,12 @@ public class TelaDetalheProduto implements ActionListener{
         txtFornecedor = new JTextField(200);
 
     }
-
+    
+    /**
+     * constroi a tela com os campos detalhados do produto escolhido,
+     * e preenche com os dados especificos. 
+     */
+    
     // Gera os campos do produto selecionado com seus dados
     public void telaDetalhe(){ 
         
@@ -349,7 +362,12 @@ public class TelaDetalheProduto implements ActionListener{
         janela.add(fornecedor);
         janela.add(txtFornecedor);
     }
-
+    
+    /**
+     * Gera campos em branco relacionado ao produto escolhido para cadastro
+     * @param op indica o produto selecionado para cadastro
+     */
+    
     // Gera os campos em branco para cadastro de novos produtos
     public void telaCadastro(int op){
         this.op = op;
@@ -364,7 +382,7 @@ public class TelaDetalheProduto implements ActionListener{
         txtCusto = new JTextField(200);
         txtFornecedor = new JTextField(200);
 
-        //coloca campos especificos de bota, sapato social e tênis
+        //coloca campos especificos de bota, sapato social e tenis
         if(op == 0 || op == 4 || op == 5){
 
             txtPalm = new JTextField(200);
@@ -377,7 +395,7 @@ public class TelaDetalheProduto implements ActionListener{
 
         }
 
-        //coloca campos especificos de bota,chuteira, sandália e tênis
+        //coloca campos especificos de bota,chuteira, sandalia e tenis
         if(op == 0 || op == 2 || op == 3 || op == 5){
             txtFecha = new JTextField(200);
 
@@ -389,7 +407,7 @@ public class TelaDetalheProduto implements ActionListener{
 
         }
 
-        //coloca campos especificos de bota, chuteira, sapato social e tênis
+        //coloca campos especificos de bota, chuteira, sapato social e tenis
         if(op == 0 || op == 2 || op == 4 || op == 5){
             txtMatForro = new JTextField(200);
             
@@ -400,7 +418,7 @@ public class TelaDetalheProduto implements ActionListener{
             janela.add(txtMatForro);
 
         }
-        //coloca campos especificos de bota e tênis
+        //coloca campos especificos de bota e tenis
         if(op == 0 || op == 5){
             txtAltCano = new JTextField(200); 
             
@@ -410,7 +428,7 @@ public class TelaDetalheProduto implements ActionListener{
             janela.add(altCano);
             janela.add(txtAltCano);
         }
-        //coloca campos especificos de sandália e sapato social
+        //coloca campos especificos de sandalia e sapato social
         if(op == 3 || op == 4){
             txtAltSalto = new JTextField(200);
 
@@ -424,17 +442,11 @@ public class TelaDetalheProduto implements ActionListener{
         // Adiciona os campos especificos do produto selecionado
         if (op == 0){
 
-            //String[] nomeCategoria = {" Bota","Chinelo","Chuteira","Sandália","Sapato Social","Tenis"};
-            //JComboBox<String> listaCateg = new JComboBox<String>(nomeCategoria);
-        
             txtCateg = new JTextField("bota",200);
-            //listaCateg.setEnabled(false);
             
-            
-            //listaCateg.setBounds(100,30,100,30);
             lingueta.setBounds(30,330,100,30);
             txtLing.setBounds(100,330,100,30);
-            //janela.add(listaCateg);
+            
             janela.add(lingueta);
             janela.add(txtLing);
 
@@ -487,7 +499,7 @@ public class TelaDetalheProduto implements ActionListener{
             txtTipoSalto = new JTextField(200);
 
             tipoDeSalto.setBounds(30,360,100,30);
-            txtTipoSalto.setBounds(120,360,100,30);
+            txtTipoSalto.setBounds(150,360,100,30);
             
             janela.add(tipoDeSalto);
             janela.add(txtTipoSalto);
@@ -570,10 +582,23 @@ public class TelaDetalheProduto implements ActionListener{
         janela.add(fornecedor);
         janela.add(txtFornecedor);
     }
-
+    
+    /**
+     * Captura os eventos relacionados ao JButton
+     * (1) verfica se o botao selecionado foi o botao de salvar,
+     * caso tenha sido, captura o valor de texto dos Jtextfield 
+     * e envia para editar ou cadastrar um produto.
+     * (2) verifica se o botao selecionado foi o botao de remover produto,
+     * caso tenha sido envia a posicao do produto a ser removido.
+     * (3) verifica se o bot�o selecionado foi o bot�o de cancelar,
+     * caso tenha sido, fecha a janela.
+     */
+    
     // Gerencia os eventos relacionados ao JButton
     public void actionPerformed(ActionEvent e){
         Object search = e.getSource();
+        String[] novosDados = new String[25];
+        Boolean res = false;
 
         if(search == salvar){
             novosDados[0] = txtCateg.getText();
@@ -590,14 +615,14 @@ public class TelaDetalheProduto implements ActionListener{
                 novosDados[8] = txtPalm.getText();     
             }
     
-            //coloca campos especificos de bota,chuteira, sandália e tênis
+            //coloca campos especificos de bota,chuteira, sandalia e tenis
             if(op == 0 || op == 2 || op == 3 || op == 5){
                 
                 novosDados[9] = txtFecha.getText();
     
             }
     
-            //coloca campos especificos de bota, chuteira, sapato social e tênis
+            //coloca campos especificos de bota, chuteira, sapato social e tenis
             if(op == 0 || op == 2 || op == 4 || op == 5){
                 
                 novosDados[10] = txtMatForro.getText();
@@ -607,7 +632,7 @@ public class TelaDetalheProduto implements ActionListener{
             if(op == 0 || op == 5){
                 novosDados[11] = txtAltCano.getText();
             }
-            //coloca campos especificos de sandália e sapato social
+            //coloca campos especificos de sandalia e sapato social
             if(op == 3 || op == 4){
                 novosDados[12] = txtAltSalto.getText();
             }
@@ -636,8 +661,6 @@ public class TelaDetalheProduto implements ActionListener{
             }else if(op == 4){
 
                 novosDados[19] = txtTipoBico.getText();
-                novosDados[20] = txtAltSalto.getText();
-
 
             }else if(op == 5){
                  
@@ -646,10 +669,13 @@ public class TelaDetalheProduto implements ActionListener{
 
             }
 
-            d.inserirEditarProduto(novosDados,op,escolha,pos);
-            mensagemSucesso();
-            janela.dispose();
-            
+            res = d.inserirEditarProduto(novosDados,op,escolha,pos);
+            if (res){
+                mensagemSucesso();
+                janela.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Não foi possivel realizar o cadastro dos dados");
+            }
         }
 
         if(search == remProd){
@@ -663,10 +689,18 @@ public class TelaDetalheProduto implements ActionListener{
         }
     }
     
+    /**
+     * Apresenta mensagem indicando que a exclusao foi realizada com sucesso
+     */
+    
     public void mensagemExclusao(){
         JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
     }
-
+    
+    /**
+     * Apresenta mensagem indicando que nenhum item da lista foi selecionado
+     */
+    
     public void mensagemSucesso(){
         JOptionPane.showMessageDialog(null, "Dados salvos com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
     }

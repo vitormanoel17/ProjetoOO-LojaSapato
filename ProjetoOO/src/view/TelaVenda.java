@@ -14,6 +14,12 @@ import controller.ControleDados;
 import controller.ControleEstoque;
 import controller.ControleFuncionario;
 
+/**
+ * Classe que gera tela com informações para realizar venda
+ * @author Vitor manoel
+ * @version 1.0
+ */
+
 public class TelaVenda implements ActionListener{
     
     private JFrame janela = new JFrame("Venda");
@@ -24,7 +30,7 @@ public class TelaVenda implements ActionListener{
     private JLabel descProduto = new JLabel("Produtos: ");
     private JComboBox<String> clientes;
     private JComboBox<String> funcionarios;
-    private JList produtos;
+    private JList<String> produtos;
     private ControleCliente c;
     private ControleFuncionario f;
     private ControleEstoque e;
@@ -66,6 +72,15 @@ public class TelaVenda implements ActionListener{
         btnCancel.addActionListener(this);
     }
 
+    /**
+     * Captura eventos relacionados ao JButton
+     * (1) Verifica se o botão selecionado foi o botão de finalizar,
+     * caso tenha sido envia, os dados selecionados pelo usuário para
+     * cadastro de uma nova venda. 
+     * (2) Verifica se o botão selecionado foi o botão de cancelar,
+     * caso tenha sido, fecha a janela.
+     */
+    
     public void actionPerformed(ActionEvent e){
         Object search = e.getSource();
         

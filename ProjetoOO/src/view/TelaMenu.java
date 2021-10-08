@@ -6,6 +6,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import controller.ControleDados;
 
+/**
+ * Classe que gera a tela de menu com as opções
+ * de visualização de diferentes telas
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class TelaMenu implements ActionListener{
     ControleDados d = new ControleDados();
     private JFrame janela = new JFrame("Tela Menu");
@@ -45,12 +51,25 @@ public class TelaMenu implements ActionListener{
         TelaMenu tela = new TelaMenu();
     }
 
-
+    /**
+     * Captura eventos relacionados ao JButton
+     * (1) verifica se o botão selecionado foi o botao1,
+     * caso tenha sido gera tela cliente
+     * (2) verifica se o botão selecionado foi o botao2,
+     * caso tenha sido gera tela estoque
+     * (3) verifica se o botão selecionado foi o botao3,
+     * caso tenha sido gera tela de funcionário
+     * (4) verifica se o botão selecionado foi o botao4,
+     * caso tenha sido gera tela do financeiro
+     * (5) verifica se o botão selecionado foi o botao5,
+     * caso tenha sido gera tela de venda
+     */
+    
     public void actionPerformed(ActionEvent e) {
         Object search = e.getSource();
 
         if(search == botao) {
-            new TelaCliente().mostrarDados(1, d);
+            new TelaPessoa().mostrarDados(1, d);
         }
 
         if(search == botao2){
@@ -58,7 +77,7 @@ public class TelaMenu implements ActionListener{
         }
         
         if(search == botao3){
-            new TelaCliente().mostrarDados(2,d);
+            new TelaPessoa().mostrarDados(2,d);
         }
         
         if(search == botao4){

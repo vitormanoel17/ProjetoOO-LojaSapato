@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Classe que representa um telefone de uma pessoa
+ * @author Vitor manoel
+ * @version 1.0
+ */
 public class Telefone {
 	private int ddd;
 	private int numero;

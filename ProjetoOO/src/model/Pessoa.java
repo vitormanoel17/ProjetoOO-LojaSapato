@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Classe que representa uma pessoa genérica
+ * @author Vitor manoel
+ * @version 1.0
+ */
 abstract public class Pessoa {
 	private Endereco endereco;
 	private Telefone telefone;
