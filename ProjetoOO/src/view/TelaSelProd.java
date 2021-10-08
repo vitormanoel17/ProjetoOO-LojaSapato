@@ -1,20 +1,19 @@
 package view;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.*;
+import javax.swing.event.*;
+import controller.ControleDados;
 
 public class TelaSelProd implements ListSelectionListener{
     
     private JFrame janela = new JFrame("Seleção de Produto");
     private JLabel desc = new JLabel("Escolha a Categoria de calçado que deseja cadastrar:");
-    private String[] nomeCategoria = {"Bota","Chinelo","Chuteira","Sandália","Sapato Social","Tenis"};
+    private String[] nomeCategoria = {"Bota","Chinelo","Chuteira","Sandália","Sapato Social","Tênis"};
     private JList<String> listaCategoria = new JList<String>(nomeCategoria);
+    private ControleDados d;
 
-    public TelaSelProd(){
+    public TelaSelProd(ControleDados dados){
+        this.d = dados;
         janela.setSize(400,250);
         desc.setBounds(30,30,400,30);
         listaCategoria.setBounds(30,60,300,120);
@@ -29,8 +28,11 @@ public class TelaSelProd implements ListSelectionListener{
     }
 
     public void valueChanged(ListSelectionEvent e){
+
+        // Gera tela para cadastro de novo produto
         if(e.getValueIsAdjusting()){
-            new TelaDetalheProduto(1).telaCadastro(listaCategoria.getSelectedIndex());
+            new TelaDetalheProduto(0,d,1).telaCadastro(listaCategoria.getSelectedIndex());
+            janela.dispose();
         }
     }
 }

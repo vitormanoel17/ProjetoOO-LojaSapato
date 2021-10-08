@@ -54,7 +54,7 @@ public class TelaMenu implements ActionListener{
         }
 
         if(search == botao2){
-            new TelaEstoque(d);
+            new TelaEstoque().mostrarEstoque(d);
         }
         
         if(search == botao3){
@@ -62,7 +62,7 @@ public class TelaMenu implements ActionListener{
         }
         
         if(search == botao4){
-            new TelaVenda(d);
+            new TelaFInanceiro(d);
         }
 
         if(search == botao5){
