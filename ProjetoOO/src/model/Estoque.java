@@ -25,10 +25,12 @@ public class Estoque {
 	}
 	
 	
-	public void avisoEstoqueBaixo() {
-		if(calcado.size() > 5) {
+	public boolean avisarEstoqueBaixo() {
+		if(calcado.size() < 5) {
 			System.out.println("Estoque esgotando! ");
+			return true;
 		}
+		return false;
 	}
 	
 	public ArrayList<Calcado> getCalcado() {
