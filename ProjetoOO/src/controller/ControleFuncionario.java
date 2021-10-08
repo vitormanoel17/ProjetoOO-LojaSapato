@@ -14,7 +14,7 @@ public class ControleFuncionario {
     }
 
     public String[] getNomesFuncionarios(){
-        String[] nomes = new String[10];
+        String[] nomes = new String[f.size()];
         int i = 0;
         for(Funcionario func : f){
             nomes[i] = func.getNome();
@@ -23,6 +23,36 @@ public class ControleFuncionario {
         
         return nomes;
     }
+
+    
+    public String[] buscarNome(String nome){
+        ArrayList<String> resultado = new ArrayList<>();
+        
+        for(Funcionario fun : f){
+            if(nome.equals(fun.getNome())){
+                resultado.add(fun.getNome());
+            }
+    
+        }
+        
+        if(resultado.isEmpty()){
+            resultado.add("Nome não encontrado");
+        }   
+
+        return resultado.toArray(new String[0]);
+    }
+
+    public int getIndexBusca(String [] busca){
+        int index = 0;
+        for(int i = 0; i< f.size(); i++ ){
+            if(f.get(i).getNome().contains(busca[0])){
+                index = i;
+            }
+
+        }   
+        return index;
+    }
+
 
     public String getNome(int i){
         return f.get(i).getNome();

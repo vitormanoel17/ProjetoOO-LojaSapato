@@ -28,6 +28,7 @@ public class TelaDetalhe implements ActionListener{
     private JLabel telefone = new JLabel("Tel: ");
     private JLabel compra = new JLabel("Compras: ");
     private JButton btnSalvar = new JButton("Salvar");
+    private JButton botaoRemove = new JButton("Remover");
     private JButton btnCancel = new JButton("Cancelar");
     private JLabel qtdVendas;
     private JLabel salario;
@@ -43,20 +44,24 @@ public class TelaDetalhe implements ActionListener{
     private JScrollPane tabScroll;
     private JTable tabela;
     private int pos;
+    private int sel;
+    private int escolha;
     private ControleDados d;
     private ControleCliente c;
     private ControleFuncionario func;
     private String[] novosDados = new String[12];
 
-    public void mostrarDetalhes(int pos, ControleDados dados,int sel){
-        
+    public void mostrarDetalhes(int pos, ControleDados dados,int sel, int escolha){
+        this.sel = sel;
         this.pos = pos;
         this.d = dados;
+        this.escolha = escolha;
         func = new ControleFuncionario(dados);
         c = new ControleCliente(dados);
         
         tela.setSize(700,600);
         
+        // Mostra campos especificos de clientes
         if(sel == 1){
 
             txtNome = new JTextField(c.getNome(pos),200);
@@ -73,6 +78,7 @@ public class TelaDetalhe implements ActionListener{
             tela.add(tabScroll);
             tela.add(compra);
         
+        // mostra campos especificos de Funcionario
         }else if(sel == 2){
 
             txtNome = new JTextField(func.getNome(pos),200);
@@ -144,20 +150,35 @@ public class TelaDetalhe implements ActionListener{
         tela.add(txtDDD);
         tela.add(txtTel);
 
-            if(sel == 1){
-                btnSalvar.setBounds(500,300,100,30);
-                btnCancel.setBounds(500,350,100,30);
+        tela.add(btnCancel);
+        tela.add(btnSalvar);
+        tela.add(botaoRemove);
 
-            }else{
+            //Verifica se a opçao selecionada foi visualizar detalhes 
+            if(escolha == 2){
+
+                //posiciona os botoes em posições diferentes caso tela seja para cliente
+                if(sel == 1){
+                    btnSalvar.setBounds(500,300,100,30);
+                    botaoRemove.setBounds(500,350,100,30);
+                    btnCancel.setBounds(500,400,100,30);
+
+                }else{
+                    btnSalvar.setBounds(100,400,100,30);
+                    botaoRemove.setBounds(250,400,100,30);
+                    btnCancel.setBounds(400,400,100,30);    
+                }
+            
+            // verifica se a opção selecionada foi cadastrar
+            }else if(escolha == 1){
+                tela.add(botaoRemove);
                 btnSalvar.setBounds(200,400,100,30);
-                btnCancel.setBounds(350,400,100,30);    
+                btnCancel.setBounds(350,400,100,30);
             }
 
-            tela.add(btnCancel);
-            tela.add(btnSalvar);
             btnCancel.addActionListener(this);
             btnSalvar.addActionListener(this);
-        
+            botaoRemove.addActionListener(this);
         
 
         tela.setLayout(null);
@@ -170,7 +191,7 @@ public class TelaDetalhe implements ActionListener{
     public void criarTabela(){
 
         Object[][] lista = new Object[50][3];
-        Object[] colName = {"Data","Cateoria","Preço"};
+        Object[] colName = {"Data","Categoria","Preço"};
 
         if (c.getQtdCompras(pos) != 0){
         
@@ -194,6 +215,7 @@ public class TelaDetalhe implements ActionListener{
         Object search = e.getSource();
 
         if(search == btnSalvar){
+
             novosDados[0] = txtNome.getText();
             novosDados[1] = txtCidade.getText();
             novosDados[2] = txtEstado.getText();
@@ -204,13 +226,49 @@ public class TelaDetalhe implements ActionListener{
             novosDados[7] = txtDDD.getText();
             novosDados[8] = txtTel.getText();
 
-            d.inserirEditarCliente(novosDados, pos);
+            // Atualiza dados de cliente ou cadastra novo cliente
+            if(sel == 1 || sel == 3){
+            
+                d.inserirEditarCliente(novosDados, pos,escolha);
+            
+            // Atualiza dados de funcionário ou cadastra no funcionário
+            }else if (sel == 2 || sel == 4){
+
+                d.inserirEditarFuncionario(novosDados, pos,escolha);
+
+            }
             JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
             tela.dispose();
+        }
+
+        if(search == botaoRemove){
+            
+            //Remove o cliente selecionado na lista
+            if(sel == 1){               
+                d.removerCliente(pos);
+                mensagemExclusao();
+                tela.dispose();
+            }
+
+            //Remove o Funcionário selecionado na lista
+            if(sel == 2){
+
+                d.removerFuncionanrio(pos);
+                mensagemExclusao();
+                tela.dispose();
+            }
         }
 
         if(search == btnCancel) {
             tela.dispose();
         }
+    }
+
+    public void mensagemExclusao(){
+        JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void mensagemErroListaSel(){
+        JOptionPane.showMessageDialog(null, "Selecione um item da Lista", null, JOptionPane.INFORMATION_MESSAGE);
     }
 }

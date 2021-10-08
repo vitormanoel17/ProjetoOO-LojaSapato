@@ -1,18 +1,9 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import controller.ControleCliente;
-import controller.ControleDados;
-import controller.ControleFuncionario;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import controller.*;
 
 public class TelaCliente implements ActionListener, ListSelectionListener {
     
@@ -20,13 +11,17 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
     private ControleCliente clienteC;
     private ControleFuncionario fun;
     private JButton botaoCadastro = new JButton("Cadastrar");
-    private JButton botaoRemove = new JButton("Remover");
     private JButton btnAtualizar = new JButton("Atualizar");
+    private JButton btnBusca = new JButton("Buscar");
+    private JTextField txtBusca = new JTextField(200); 
     private JFrame tela = new JFrame();
     private JList<String> listaClientes;
     private JList<String> listaFuncionario;
     private JLabel info = new JLabel("Selecione o Cliente que deseja: ");
     private int sel;
+    private Boolean active = false;
+    private int pos;
+    private String nome;
 
     public void mostrarDados(int sel, ControleDados d){
         this.sel = sel;
@@ -34,14 +29,16 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
         clienteC = new ControleCliente(d);
         fun = new ControleFuncionario(d);
 
-        listaClientes = new JList<String>(clienteC.getClienteNome());
-        listaFuncionario = new JList<String>(fun.getNomesFuncionarios());
         tela.setSize(700,500);
         // JButtons
         botaoCadastro.setBounds(200,40,100,50);
-        botaoRemove.setBounds(310,40,100,50);
-        btnAtualizar.setBounds(420,40,100,50);
+        btnAtualizar.setBounds(320,40,100,50);
+        btnBusca.setBounds(550,110,100,30);
         // JLists
+        listaClientes = new JList<String>(clienteC.getClienteNome());
+        listaFuncionario = new JList<String>(fun.getNomesFuncionarios());
+
+        // Gerar lista de clientes cadastrados
         if(sel == 1){
             
             listaClientes.setBounds(120,150,400,300);
@@ -50,6 +47,7 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
             listaClientes.setVisibleRowCount(clienteC.getClienteNome().length);
             tela.add(listaClientes);
 
+        // Gerar lista de funcionarios cadastrados
         }else if(sel == 2){
 
             listaFuncionario.setBounds(120,150,400,300);
@@ -59,17 +57,19 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
             tela.add(listaFuncionario);
         }
         
-        //JLabel
+        txtBusca.setBounds(400,110,150,30);
+        // JLabel
         info.setBounds(120,100,200,30);
         // Adicionando componentes a tela
         tela.add(botaoCadastro);
-        tela.add(botaoRemove);
         tela.add(btnAtualizar);
+        tela.add(btnBusca);
         tela.add(info);
+        tela.add(txtBusca);
 
         botaoCadastro.addActionListener(this);
-        botaoRemove.addActionListener(this);
         btnAtualizar.addActionListener(this);
+        btnBusca.addActionListener(this);
 
         tela.setLayout(null);
         tela.setVisible(true);
@@ -81,11 +81,23 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 
         if(event.getValueIsAdjusting() && search == listaClientes){
 
-            new TelaDetalhe().mostrarDetalhes(listaClientes.getSelectedIndex(),d,sel);
+            if(active){
+                pos =  clienteC.getIndexBusca(clienteC.buscarNome(nome)); 
+            }else{
+                pos = listaClientes.getSelectedIndex();
+            }
+
+            new TelaDetalhe().mostrarDetalhes(pos,d,sel,2);
 
         }else if(event.getValueIsAdjusting() && search == listaFuncionario){
 
-            new TelaDetalhe().mostrarDetalhes(listaFuncionario.getSelectedIndex(),d, sel);
+            if(active){
+                pos =  fun.getIndexBusca(fun.buscarNome(nome)); 
+            }else{
+                pos = listaFuncionario.getSelectedIndex();
+            }
+
+            new TelaDetalhe().mostrarDetalhes(pos,d, sel,2);
 
         }
 
@@ -95,35 +107,48 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
         Object search = e.getSource();
 
         if(search == botaoCadastro){
-            new TelaDetalhe().mostrarDetalhes(0,d,0);
-        }
 
-        if(search == botaoRemove){
-            if(listaClientes.getSelectedIndex() != -1){
+            // Seleciona a tela de cadastro de cliente
+            if(sel == 1){
+                new TelaDetalhe().mostrarDetalhes(0,d,3,1);
+            }
             
-                if(sel == 1){
-                    d.removerCliente(listaClientes.getSelectedIndex());
-                    mensagemExclusao();
-                }
-
-                if(sel == 2){
-                    d.removerFuncionanrio(listaFuncionario.getSelectedIndex());
-                    mensagemExclusao();
-                }
-
-            }else{
-                JOptionPane.showMessageDialog(null, "Selecione um item da Lista", null, JOptionPane.INFORMATION_MESSAGE);
+            //Seleciona a tela de cadastro de Funcionário
+            if(sel == 2){
+                new TelaDetalhe().mostrarDetalhes(0,d,4,1);
             }
         }
 
+
         if(search == btnAtualizar){
+            active = false;
+            
+            // Atuliza a Lista de Clientes
             if(sel == 1){
                 listaClientes.setListData(clienteC.getClienteNome());
                 listaClientes.updateUI();
             }
 
+            // Atualiza a Lista de Funcionários
             if(sel == 2){
                 listaFuncionario.setListData(fun.getNomesFuncionarios());
+                listaFuncionario.updateUI();
+            }
+        }
+
+        if(search == btnBusca){
+            nome = txtBusca.getText();
+            active = true;
+
+            // Realiza busca pelo nome do cliente
+            if(sel == 1){
+                listaClientes.setListData(clienteC.buscarNome(nome));
+                listaClientes.updateUI();
+            }
+
+            // Realiza busca pelo nome do funcionário
+            if(sel == 2){
+                listaFuncionario.setListData(fun.buscarNome(nome));
                 listaFuncionario.updateUI();
             }
         }
@@ -132,5 +157,9 @@ public class TelaCliente implements ActionListener, ListSelectionListener {
 
     public void mensagemExclusao(){
         JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso", null, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void mensagemErroListaSel(){
+        JOptionPane.showMessageDialog(null, "Selecione um item da Lista", null, JOptionPane.INFORMATION_MESSAGE);
     }
 }

@@ -20,6 +20,33 @@ public class ControleCliente {
         return nomes;
     }
 
+    public String[] buscarNome(String nome){
+        ArrayList<String> resultado = new ArrayList<>();
+
+        for(Cliente cl : c){
+            if(nome.equals(cl.getNome())){
+                resultado.add(cl.getNome());
+            }
+        }
+        
+        if(resultado.isEmpty()){
+            resultado.add("Nome não encontrado");
+        }   
+        return resultado.toArray(new String[0]);
+    }
+
+    public int getIndexBusca(String [] busca){
+        int index = 0;
+        
+        for(int i = 0; i< c.size(); i++ ){
+            if(c.get(i).getNome().contains(busca[0])){
+                index = i;
+            }
+
+        }   
+        return index;
+    }
+
     public int getQtdCompras(int i){
         return c.get(i).getQuantCompras();
     }
